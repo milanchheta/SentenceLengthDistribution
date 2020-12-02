@@ -1,11 +1,16 @@
+//file for output area
+
+//import statements
 import React from "react";
 import ReactLoading from "react-loading";
 import "./style.css";
-const OutputArea = ({ outputText, outputGrpah, processing }) => {
-  console.log(processing);
+
+//Function to show output
+const OutputArea = ({ outputText, outputGraph, processing }) => {
   return (
     <div className="OutputArea  mx-auto">
-      {(processing || outputGrpah) && (
+      {/* Show graph output */}
+      {(processing || outputGraph) && (
         <>
           <div className="row">
             <div className="col">
@@ -13,14 +18,14 @@ const OutputArea = ({ outputText, outputGrpah, processing }) => {
             </div>
           </div>
 
-          {outputGrpah ? (
+          {!processing && outputGraph ? (
             <>
               <div className="row">
                 <div className="col">
                   <div
                     className="col float-left"
                     style={{ width: "800px" }}
-                    dangerouslySetInnerHTML={{ __html: outputGrpah }}
+                    dangerouslySetInnerHTML={{ __html: outputGraph }}
                   />
                 </div>
               </div>
@@ -40,21 +45,21 @@ const OutputArea = ({ outputText, outputGrpah, processing }) => {
           )}
         </>
       )}
-
+      {/* Show tabular output */}
       {(processing || outputText) && (
         <>
-          <div className="row mt-5">
-            <div className="col">
+          <div className="row mt-5 mx-auto">
+            <div className="col mx-auto ">
               <h2>Tabular Output</h2>
             </div>
           </div>
-          {outputText ? (
-            <div className="row ">
-              <div className="col">
+          {!processing && outputText ? (
+            <div className="row mx-auto">
+              <div className="col mx-auto">
                 <table>
                   <thead>
                     <tr>
-                      <th>Length of Sentences</th>
+                      <th>Length of Sentences (w.r.t. characters)</th>
                       <th>Frequency of lengths</th>
                     </tr>
                   </thead>
